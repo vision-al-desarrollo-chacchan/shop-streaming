@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: shop-streaming
+    runtime: node
+    plan: free
+    buildCommand: npm ci --ignore-scripts --no-audit --no-fund && npm test
+    startCommand: npm start
+    healthCheckPath: /api/products
+    envVars:
+      - key: NODE_VERSION
+        value: 24.19.0
+      - key: NODE_ENV
+        value: production
+      - key: PAYMENTS_LIVE
+        value: "false"
